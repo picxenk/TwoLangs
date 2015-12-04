@@ -119,6 +119,7 @@ smiley.home()
 setupBlue = function() {
 	myp5.strokeWeight(3)
 	myp5.stroke(69, 196, 255)
+	myp5.noFill()
 }
 
 background =  function(color) {
