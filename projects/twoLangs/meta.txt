@@ -90,13 +90,18 @@ Turtle.prototype.clear = function() {
 	})
 }
 
+Turtle.prototype.지우기 = function() { this.clear()       }
+Turtle.prototype.집으로가기 = function() { this.home()       }
 
+Turtle.prototype.이동하기 = function(px, py) { this.goto(px, py)       }
 Turtle.prototype.rt = function(n) { this.turnBy(n)       }
 Turtle.prototype.turn = function(n) { this.turnBy(n)       }
+Turtle.prototype.돌기 = function(n) { this.turnBy(n)       }
 Turtle.prototype.rightTurn = function(n) { this.turnBy(n)       }
 Turtle.prototype.lt = function(n) { this.turnBy(-n)      }
 Turtle.prototype.fd = function(n) { this.forwardBy(n)    }
 Turtle.prototype.go = function(n) { this.forwardBy(n)    }
+Turtle.prototype.움직이기 = function(n) { this.forwardBy(n)    }
 Turtle.prototype.forward = function(n) { this.forwardBy(n)    }
 Turtle.prototype.bk = function(n) { this.forwardBy(-n)   }
 Turtle.prototype.backward = function(n) { this.forwardBy(-n)   }
@@ -104,6 +109,7 @@ Turtle.prototype.pu = function()  { var s = this; theScheduler.schedule(function
 Turtle.prototype.pd = function()  { var s = this; theScheduler.schedule(function() {s.penDown = true}) }
 Turtle.prototype["if"] = function(cond, block) { if (cond) block() }
 Turtle.prototype["repeat"] = function(times, block) { for (var cnt = 1 ; cnt <= times ; cnt++ ) {block()}}
+Turtle.prototype["반복하기"] = function(times, block) { for (var cnt = 1 ; cnt <= times ; cnt++ ) {block()}}
 Turtle.prototype.px = function(n) { var s = this; theScheduler.schedule(function() {s.x = n}) }
 Turtle.prototype.py = function(n) { var s = this; theScheduler.schedule(function() {s.y = n}) }
 Turtle.prototype.toward = function(n) { var s = this; theScheduler.schedule(function() {s.angle = n * Math.PI / 180}) }
@@ -145,6 +151,7 @@ circle = function(x, y, s) {
 	myp5.ellipse(x, y, s, s)
 }
 원 = circle
+지우기 = clean
 
 
 translateLeftCode = function(code) { return smiley.eval(code) }
