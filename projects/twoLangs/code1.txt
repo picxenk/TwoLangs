@@ -1,0 +1,8 @@
+home
+
+goto 10 10
+
+repeat 4 [
+  go 100
+  turn 90
+]
