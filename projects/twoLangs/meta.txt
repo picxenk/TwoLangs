@@ -133,6 +133,11 @@ background =  function(color) {
 }
 배경색 = background
 
+point = function(sx, sy) {
+	setupBlue()
+	myp5.point(sx, sy)
+}
+점 = point
 line = function(sx, sy, ex, ey) {
 	setupBlue()
 	myp5.line(sx, sy, ex, ey)
