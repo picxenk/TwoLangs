@@ -153,7 +153,7 @@ rectangle = function(sx, sy, w, h) {
 
 circle = function(x, y, s) {
 	setupBlue()
-	myp5.ellipse(x, y, s/2, s/2)
+	myp5.ellipse(x, y, s*2, s*2)
 }
 원 = circle
 지우기 = clean
