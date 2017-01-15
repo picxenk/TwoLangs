@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/>
-<title> 이랑:2Lang </title>
+<title> 이랑:2Lang + IR Switch </title>
 <!-- ============================  external libraries    ============================ -->
 <script src="ometa/prototype.js"></script>
 <script src="ometa/prototype-fix.js"></script>
@@ -44,7 +44,7 @@ function updateMeta() {
 	if ($('screen').children.length > 0) {
 		$('screen').children[0].remove();
 	}
-  
+
 	var translationError = function(m, i) { alert("Translation error - please tell Alex about this!"); throw fail },
 		tree             = BSOMetaJSParser.matchAll($('workspaceForm').meta_code.value, "topLevel", undefined, function(m, i) { throw fail.delegated({errorPos: i}) });
 
@@ -110,7 +110,7 @@ function loadLanguage(language) {
 </div>
 </form>
 <div id="footer">
-<a href="https://github.com/picxenk/TwoLangs">2Langs</a> by SeungBumKim 
+<a href="https://github.com/picxenk/TwoLangs">2Langs</a> by SeungBumKim
 </div>
 
 <br/>
