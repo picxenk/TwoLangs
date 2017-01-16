@@ -3,6 +3,9 @@ var screenHeight = 0
 var bgColor = 255
 var gridUnit = 10
 
+var serial
+var menu
+var IRcommand
 
 var s = function( p ) {
   p.setup = function() {
@@ -10,11 +13,45 @@ var s = function( p ) {
   	screenHeight = Math.round(p.windowHeight)
     p.createCanvas(screenWidth, screenHeight).parent('screen')
     p.noLoop()
+
+    serial = new p5.SerialPort()
+    serial.list()
+    serial.on('list', printList)
+    serial.on('data', processIRswitch)
   }
 
   p.draw = function() {
   }
+
+  openPort = function() {
+    portName = menu.elt.value
+    serial.open(portName)
+  }
+
+  printList = function(serialList) {
+    menu = p.createSelect()
+    var title = p.createElement('option', 'Choose a port:')
+    menu.child(title)
+    menu.position(p.windowWidth*0.4, 0)
+    menu.style("z-index:3")
+    menu.changed(openPort)
+    for (var i = 0; i < serialList.length; i++) {
+      var thisOption = p.createElement('option', serialList[i])
+      thisOption.value = serialList[i]
+      menu.child(thisOption)
+    }
+  }
+
+  processIRswitch = function() {
+    var string = serial.readStringUntil('\r\n')
+    p.trim(string)
+    if (!string) return
+    IRcommand = string
+    console.log(IRcommand)
+  }
 }
+
+
 
 myp5 = new p5(s)
 
@@ -51,6 +88,7 @@ print = function(text) {
 		myp5.text(text, 10, 10, screenWidth-10, screenHeight-10)
 	})
 }
+
 
 
 clean = function() {
