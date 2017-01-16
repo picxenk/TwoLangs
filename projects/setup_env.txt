@@ -4,8 +4,11 @@ var bgColor = 255
 var gridUnit = 10
 
 var serial
-var menu
-var IRcommand
+var menu, input
+var IRtype = -1
+var IRcommand = 0
+var commands = ['FF38C7', 'FFC23D']
+var IRid = -1
 
 var s = function( p ) {
   p.setup = function() {
@@ -30,10 +33,17 @@ var s = function( p ) {
 
   printList = function(serialList) {
     menu = p.createSelect()
+    input = p.createInput()
+
+    input.size(20)
+    input.position(p.windowWidth*0.4-50, 0)
+    input.style("z-index:3")
+
     var title = p.createElement('option', 'Choose a port:')
     menu.child(title)
     menu.position(p.windowWidth*0.4, 0)
     menu.style("z-index:3")
+
     menu.changed(openPort)
     for (var i = 0; i < serialList.length; i++) {
       var thisOption = p.createElement('option', serialList[i])
@@ -46,8 +56,18 @@ var s = function( p ) {
     var string = serial.readStringUntil('\r\n')
     p.trim(string)
     if (!string) return
-    IRcommand = string
-    console.log(IRcommand)
+
+    var splitted = string.split('-')
+    IRtype = splitted[0]
+
+    if (IRtype == 1 && splitted[1] != 'FFFFFFFF') {
+      IRcommand = splitted[1]
+      IRid = commands.indexOf(IRcommand)
+      console.log(IRcommand)
+      console.log(IRid)
+      input.value(IRid)
+      drawRight()
+    }
   }
 }
 

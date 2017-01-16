@@ -158,6 +158,10 @@ circle = function(x, y, s) {
 원 = circle
 지우기 = clean
 
+random = function(a, b) {
+  return myp5.random(a, b)
+}
+
 
 translateLeftCode = function(code) { return smiley.eval(code) }
 translateRightCode = function(code) { return eval(code)}

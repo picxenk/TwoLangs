@@ -18,7 +18,7 @@ void loop() {
  if (irrecv.decode(&results)) {
    type = checkEncodingType(&results);
    data = results.value;
-   printSerial(&results);
+   sendSerial(&results);
    irrecv.resume(); // Receive the next value
  }
 } 
@@ -35,6 +35,11 @@ int checkEncodingType(decode_results *results) {
   return type;
 }
 
+void sendSerial(decode_results *results) {
+  Serial.print(type);
+  Serial.print("-");
+  Serial.println(results->value, HEX);
+}
 
 void printSerial(decode_results *results) {
   Serial.println("-----------------------");  
