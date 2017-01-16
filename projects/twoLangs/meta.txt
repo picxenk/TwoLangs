@@ -39,6 +39,14 @@ Turtle = function() {
   this.angle   = 0
   this.color   = "black"
   this.penDown = true
+  this.IRid    = -1
+}
+
+Turtle.prototype.id = function(i) {
+	var s = this
+	theScheduler.schedule(function() {
+    s.IRid = i
+	})
 }
 
 
@@ -114,6 +122,7 @@ Turtle.prototype.px = function(n) { var s = this; theScheduler.schedule(function
 Turtle.prototype.py = function(n) { var s = this; theScheduler.schedule(function() {s.y = n}) }
 Turtle.prototype.toward = function(n) { var s = this; theScheduler.schedule(function() {s.angle = n * Math.PI / 180}) }
 Turtle.prototype.print = function(n) { print(n) }
+Turtle.prototype["ifID"] = function(id, block) { if (this.IRid == id) block() }
 
 Turtle.prototype.eval = function(code) { eval(LogoTranslator.matchAll(code, "topLevelCmds")).apply(this) }
 
@@ -163,5 +172,5 @@ random = function(a, b) {
 }
 
 
-translateLeftCode = function(code) { return smiley.eval(code) }
+translateLeftCode = function(code) { smiley.id(IRid); return smiley.eval(code) }
 translateRightCode = function(code) { return eval(code)}
