@@ -122,6 +122,7 @@ Turtle.prototype.px = function(n) { var s = this; theScheduler.schedule(function
 Turtle.prototype.py = function(n) { var s = this; theScheduler.schedule(function() {s.y = n}) }
 Turtle.prototype.toward = function(n) { var s = this; theScheduler.schedule(function() {s.angle = n * Math.PI / 180}) }
 Turtle.prototype.print = function(n) { print(n) }
+Turtle.prototype.random = function(n) { return myp5.int(myp5.random(n)) }
 Turtle.prototype["ifID"] = function(id, block) { if (this.IRid == id) block() }
 
 Turtle.prototype.eval = function(code) { eval(LogoTranslator.matchAll(code, "topLevelCmds")).apply(this) }
