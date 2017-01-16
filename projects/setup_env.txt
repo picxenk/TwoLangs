@@ -3,6 +3,7 @@ var screenHeight = 0
 var bgColor = 255
 var gridUnit = 10
 
+
 var s = function( p ) {
   p.setup = function() {
   	screenWidth = Math.round(p.windowWidth*0.4)
@@ -34,6 +35,7 @@ Scheduler.prototype.tick = function() {
 
 }
 
+
 theScheduler = new Scheduler()
 theScheduler.schedule(function() {
 	myp5.background(bgColor)
@@ -49,6 +51,7 @@ print = function(text) {
 		myp5.text(text, 10, 10, screenWidth-10, screenHeight-10)
 	})
 }
+
 
 clean = function() {
 	myp5.background(bgColor)
