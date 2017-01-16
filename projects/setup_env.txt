@@ -10,6 +10,8 @@ var IRcommand = 0
 var commands = ['FF38C7', 'FFC23D']
 var IRid = -1
 
+var osc, osc2, env
+
 var s = function( p ) {
   p.setup = function() {
   	screenWidth = Math.round(p.windowWidth*0.4)
@@ -21,6 +23,16 @@ var s = function( p ) {
     serial.list()
     serial.on('list', printList)
     serial.on('data', processIRswitch)
+
+    osc = new p5.SinOsc()
+    osc2 = new p5.SqrOsc()
+    env = new p5.Env()
+    env.setADSR(0.001, 0.5, 0.1, 0.5)
+    env.setRange(1, 0)
+    osc.start()
+    osc.freq(0)
+    osc2.start()
+    osc2.freq(0)
   }
 
   p.draw = function() {
@@ -122,4 +134,19 @@ clean = function() {
 	for (i=0; i<myp5.displayHeight; i=i+gridUnit) {
 		myp5.line(0, i, myp5.displayWidth, i)
 	}
+}
+
+playNote = function(note) {
+  var freq = myp5.midiToFreq(note)
+  osc.freq(freq)
+  env.play(osc, 0, 0.1)
+
+}
+
+playNote2 = function(note) {
+  osc2.start()
+  var freq = myp5.midiToFreq(note)
+  osc2.freq(freq)
+  env.play(osc2, 0, 0.1)
+  osc2.stop()
 }
