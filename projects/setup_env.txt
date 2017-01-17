@@ -127,8 +127,11 @@ print = function(text) {
 clean = function() {
 	myp5.background(bgColor)
 	myp5.strokeWeight(1)
-	myp5.stroke(0, 100, 200, 30)
+	//myp5.stroke(0, 100, 200, 30)
+  myp5.stroke(220, 100, 200, 30)
 	for (i=0; i<myp5.displayWidth; i=i+gridUnit) {
+    if (i%100 == 0) myp5.strokeWeight(4)
+    else myp5.strokeWeight(1)
 		myp5.line(i, 0, i, myp5.displayHeight)
 	}
 	for (i=0; i<myp5.displayHeight; i=i+gridUnit) {
