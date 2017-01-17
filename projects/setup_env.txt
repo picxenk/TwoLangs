@@ -7,7 +7,14 @@ var serial
 var menu, input
 var IRtype = -1
 var IRcommand = 0
-var commands = ['FF38C7', 'FFC23D']
+var commands = ['000000',
+  'FFA25D', 'FF629D', 'FFE21D',
+  'FF22DD', 'FF02FD', 'FFC23D',
+  'FFE01F', 'FFA857', 'FF906F',
+  'FF6897', 'FF9867', 'FFB04F',
+  'FF30CF', 'FF18E7', 'FF7A85',
+  'FF10EF', 'FF38C7', 'FF5AA5',
+  'FF42BD', 'FF4AB5', 'FF52AD']
 var IRid = -1
 
 var osc, osc2, env
