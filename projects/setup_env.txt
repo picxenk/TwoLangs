@@ -17,7 +17,7 @@ var commands = ['000000',
   'FF42BD', 'FF4AB5', 'FF52AD']
 var IRid = -1
 
-var osc, osc2, env
+var osc, osc2, env, env2
 
 var s = function( p ) {
   p.setup = function() {
@@ -36,6 +36,10 @@ var s = function( p ) {
     env = new p5.Env()
     env.setADSR(0.001, 0.5, 0.1, 0.5)
     env.setRange(1, 0)
+    env2 = new p5.Env()
+    env2.setADSR(0.001, 0.2, 0.1, 0.5)
+    env2.setRange(1, 0)
+
     osc.start()
     osc.freq(0)
     osc2.start()
@@ -154,10 +158,25 @@ playNote = function(note) {
 
 }
 
+
 playNote2 = function(note) {
-  osc2.start()
   var freq = myp5.midiToFreq(note)
   osc2.freq(freq)
-  env.play(osc2, 0, 0.1)
-  osc2.stop()
+  env2.play(osc2, 0, 0.1)
+}
+
+playTone = playNote
+tone = playNote
+playTone2 = playNote2
+
+ding = function(n) {
+  var note = [70, 94, 106]
+  var i = (n-1)%note.length
+  playNote(note[i])
+}
+
+dongLOGO = function(n) {
+  var note = [41, 53, 65]
+  var i = (n-1)%note.length;
+  playNote2(note[i])
 }

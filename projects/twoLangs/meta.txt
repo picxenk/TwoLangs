@@ -98,6 +98,18 @@ Turtle.prototype.clear = function() {
 	})
 }
 
+Turtle.prototype.dong = function(n) {
+	theScheduler.schedule(function() {
+		dongLOGO(n)
+	})
+}
+
+Turtle.prototype.tone = function(n) {
+	theScheduler.schedule(function() {
+		playTone2(n)
+	})
+}
+
 Turtle.prototype.지우기 = function() { this.clear()       }
 Turtle.prototype.집으로가기 = function() { this.home()       }
 
