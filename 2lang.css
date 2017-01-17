@@ -18,7 +18,7 @@ textarea.codespace {
 	box-sizing: border-box;         /* For IE and modern versions of Chrome */
 	-moz-box-sizing: border-box;    /* For Firefox                          */
 	-webkit-box-sizing: border-box; /* For Safari                           */
-    height:100%; 
+    height:100%;
 }
 
 textarea#code1 {
@@ -38,7 +38,7 @@ textarea.systemout {
     top: 0px;
     left:0;
     bottom:0;
-    
+
     border-style: none;
     border-color: #ffffff;
     background-color: #999999;
@@ -50,7 +50,7 @@ textarea.systemout {
     top: 0px;
     right:0;
     bottom:0;
-    
+
     border-style: none;
     border-color: #333333;
     background-color: #999999;
@@ -116,7 +116,7 @@ textarea.systemout {
 
     position: absolute;
     z-index: 1;
-    left: 55%;
+    left: 65%;
     bottom: 5px;
 }
 
