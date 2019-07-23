@@ -4,7 +4,8 @@ var bgColor = 255
 var gridUnit = 10
 
 var serial
-var menu, input
+var menu
+var Bits = [0, 0, 0, 0, 0, 0, 0, 0]
 var IRtype = -1
 var IRcommand = 0
 var commands = ['000000',
@@ -56,11 +57,6 @@ var s = function( p ) {
 
   printList = function(serialList) {
     menu = p.createSelect()
-    input = p.createInput()
-
-    input.size(20)
-    input.position(p.windowWidth*0.4-50, 0)
-    input.style("z-index:3")
 
     var title = p.createElement('option', 'Choose a port:')
     menu.child(title)
@@ -85,29 +81,24 @@ var s = function( p ) {
 
   process8Bits = function() {
     var bits = toBits(serial.read());
-    serial.clear();
-    console.log(bits);
-    if (bits > 0) drawLeft()
+    Bits = bits;
+    show8Bits();
+    //serial.clear();
+    //console.log(bits);
+    //if (bits > 0) drawLeft()
   }
 
-  processIRswitch = function() {
-    var string = serial.readStringUntil('\r\n')
-    p.trim(string)
-    if (!string) return
+  show8Bits = function() {
+    p.strokeWeight(2);
+    p.stroke(120);
+    for (var i=0; i<8; i++) {
 
-    var splitted = string.split('-')
-    IRtype = splitted[0]
-
-    if (IRtype == 1 && splitted[1] != 'FFFFFFFF') {
-      IRcommand = splitted[1]
-      IRid = commands.indexOf(IRcommand)
-      console.log(IRcommand)
-      console.log(IRid)
-      input.value(IRid)
-      drawLeft()
-      drawRight()
+      if (Bits[i] == 1) p.fill(0);
+      else p.fill(255);
+      p.rect(0+gridUnit*i, 0, gridUnit, gridUnit);
     }
   }
+
 }
 
 
