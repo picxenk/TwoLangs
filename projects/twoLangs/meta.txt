@@ -40,12 +40,20 @@ Turtle = function() {
   this.color   = "black"
   this.penDown = true
   this.IRid    = -1
+  this.Bits = []
 }
 
 Turtle.prototype.id = function(i) {
 	var s = this
 	theScheduler.schedule(function() {
     s.IRid = i
+	})
+}
+
+Turtle.prototype.bits = function(i) {
+	var s = this
+	theScheduler.schedule(function() {
+    s.Bits = i
 	})
 }
 
@@ -136,6 +144,7 @@ Turtle.prototype.toward = function(n) { var s = this; theScheduler.schedule(func
 Turtle.prototype.print = function(n) { print(n) }
 Turtle.prototype.random = function(n) { return myp5.int(myp5.random(n)) }
 Turtle.prototype["ifID"] = function(id, block) { if (this.IRid == id) block() }
+Turtle.prototype["ifBit"] = function(n, block) { if (this.Bits[n-1] == 1) block() }
 
 Turtle.prototype.eval = function(code) { eval(LogoTranslator.matchAll(code, "topLevelCmds")).apply(this) }
 
@@ -185,5 +194,5 @@ random = function(a, b) {
 }
 
 
-translateLeftCode = function(code) { smiley.id(IRid); return smiley.eval(code) }
+translateLeftCode = function(code) { smiley.bits(Bits); return smiley.eval(code) }
 translateRightCode = function(code) { return eval(code)}

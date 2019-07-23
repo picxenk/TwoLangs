@@ -6,6 +6,12 @@ var gridUnit = 10
 var serial
 var menu
 var Bits = [0, 0, 0, 0, 0, 0, 0, 0]
+var x = 0
+var y = 0
+var z = 0
+var i = 0
+var j = 0
+
 var IRtype = -1
 var IRcommand = 0
 var commands = ['000000',
@@ -82,10 +88,13 @@ var s = function( p ) {
   process8Bits = function() {
     var bits = toBits(serial.read());
     Bits = bits;
-    show8Bits();
-    //serial.clear();
+
+    drawLeft();
+    drawRight();
+    serial.clear();
     //console.log(bits);
     //if (bits > 0) drawLeft()
+    show8Bits();
   }
 
   show8Bits = function() {
