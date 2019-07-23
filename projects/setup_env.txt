@@ -75,8 +75,16 @@ var s = function( p ) {
     }
   }
 
+  toBits = function(b) {
+    bits = [];
+    for (let i=0; i<8; i++) {
+      bits[7-i] = (b >> i) & 1;
+    }
+    return bits;
+  }
+
   process8Bits = function() {
-    var bits = serial.read();
+    var bits = toBits(serial.read());
     serial.clear();
     console.log(bits);
     if (bits > 0) drawLeft()

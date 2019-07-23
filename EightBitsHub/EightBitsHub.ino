@@ -59,6 +59,8 @@ boolean isSimulation = false;
 
 //EthernetUDP Udp;
 
+char oldSignal = 0;
+
 
 void setup() {
 //  Ethernet.begin(hubMacList[hubID], ip);
@@ -92,7 +94,13 @@ void loop() {
 
     readNodeBits();
     char signal = packBitsToSignal();
-    sendNodeSignal2(signal);
+
+    if (signal == oldSignal) {
+      
+    } else {
+      sendNodeSignal2(signal);
+      oldSignal = signal;
+    }
 
   }
 
