@@ -29,7 +29,7 @@ var s = function( p ) {
     serial = new p5.SerialPort()
     serial.list()
     serial.on('list', printList)
-    serial.on('data', processIRswitch)
+    serial.on('data', process8Bits)
 
     osc = new p5.SinOsc()
     osc2 = new p5.SqrOsc()
@@ -73,6 +73,13 @@ var s = function( p ) {
       thisOption.value = serialList[i]
       menu.child(thisOption)
     }
+  }
+
+  process8Bits = function() {
+    var bits = serial.read();
+    serial.clear();
+    console.log(bits);
+    if (bits > 0) drawLeft()
   }
 
   processIRswitch = function() {
