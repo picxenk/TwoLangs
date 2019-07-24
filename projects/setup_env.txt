@@ -4,7 +4,8 @@ var bgColor = 255
 var gridUnit = 10
 
 var serial
-var menu
+var serialHost = 'localhost'
+var menu, input
 var Bits = [0, 0, 0, 0, 0, 0, 0, 0]
 var ot = 0
 var ct = 0
@@ -36,7 +37,11 @@ var s = function( p ) {
     p.createCanvas(screenWidth, screenHeight).parent('screen')
     p.noLoop()
 
-    serial = new p5.SerialPort()
+    var param = window.location.search.slice(1)
+    if (param.split('.').length == 4) serialHost = param
+    else serialHost = 'localhost'
+
+    serial = new p5.SerialPort(serialHost)
     serial.list()
     serial.on('list', printList)
     serial.on('data', process8Bits)
@@ -64,8 +69,21 @@ var s = function( p ) {
     serial.open(portName)
   }
 
+  changeServer = function() {
+    console.log(input.value)
+    serial = new p5.SerialPort(input.value)
+    serial.list()
+    serial.on('list', printList)
+    serial.on('data', process8Bits)
+  }
+
   printList = function(serialList) {
     menu = p.createSelect()
+  //  input = p.createInput()
+  //  input.size(120)
+  //  input.position(p.windowWidth*0.3, p.windowHeight-30)
+  //  input.style("z-index:3")
+  //  input.changed(changeServer)
   //  bpmText = p.createDiv(bpm)
   //  bpmText.position(p.windowWidth*0.4, 0)
   //  bpmText.style("font-family", "monospace")
@@ -74,7 +92,7 @@ var s = function( p ) {
 
     var title = p.createElement('option', 'Choose a port:')
     menu.child(title)
-    menu.position(p.windowWidth*0.5, 0)
+    menu.position(p.windowWidth*0.3+gridUnit, p.windowHeight-gridUnit*3)
     menu.style("z-index:3")
 
     menu.changed(openPort)
@@ -114,11 +132,12 @@ var s = function( p ) {
   show8Bits = function() {
     p.strokeWeight(2);
     p.stroke(120);
+    var sx = (p.width/2) - (gridUnit*4);
     for (var i=0; i<8; i++) {
 
       if (Bits[i] == 1) p.fill(0);
       else p.fill(255);
-      p.rect(0+gridUnit*i, 0, gridUnit, gridUnit);
+      p.rect(sx+gridUnit*i, 0, gridUnit, gridUnit);
     }
   }
 
