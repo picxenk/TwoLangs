@@ -1,3 +1,11 @@
+@font-face {
+     font-family: 'DungGeunMo';
+     /* src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff') format('woff'); */
+     src: local('/data/DungGeunMo.ttf');
+     font-weight: normal;
+     font-style: normal;
+}
+
 html, body {
     margin: 0;
     padding: 0;
@@ -6,19 +14,22 @@ html, body {
 
 textarea {
     width: 99%;
-    font-family: monaco, monospace;
+    /* font-family: monaco, monospace; */
+    font-family: DungGeunMo;
     font-size: 10pt;
 }
 textarea.codespace {
-    font-family: 'Roboto Mono';
+    /* font-family: 'Roboto Mono'; */
+    font-family: DungGeunMo;
     font-size: 0.9em;
+    line-height: 110%;
 
 	outline: none;
 	border-color: #ffffff;
 	box-sizing: border-box;         /* For IE and modern versions of Chrome */
 	-moz-box-sizing: border-box;    /* For Firefox                          */
 	-webkit-box-sizing: border-box; /* For Safari                           */
-    height:100%; 
+    height:100%;
 }
 
 textarea#code1 {
@@ -38,7 +49,7 @@ textarea.systemout {
     top: 0px;
     left:0;
     bottom:0;
-    
+
     border-style: none;
     border-color: #ffffff;
     background-color: #999999;
@@ -50,7 +61,7 @@ textarea.systemout {
     top: 0px;
     right:0;
     bottom:0;
-    
+
     border-style: none;
     border-color: #333333;
     background-color: #999999;
