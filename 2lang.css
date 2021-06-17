@@ -147,7 +147,13 @@ input, select {
         background: #dddddd;
 }
 
-input:hover, input:focus {
+input:hover {
     background: #efefef;
     text-decoration: none;
+}
+
+input:active {
+  background: #000000;
+  color:#efefef;
+  text-decoration: none;
 }
