@@ -60,7 +60,7 @@ Turtle.prototype.forwardBy = function(n) {
   		pY = s.y
   		s.x += n * Math.cos(s.angle)
   		s.y += n * Math.sin(s.angle)
-  
+
   		if (s.penDown) {
   			myp5.line(pX, pY, s.x, s.y)
   		}
@@ -74,17 +74,17 @@ Turtle.prototype.turnBy = function(n) {
 }
 
 
-Turtle.prototype.home = function() { 
+Turtle.prototype.home = function() {
 	var s = this
 	theScheduler.schedule(function() {
 		s.goto(screenWidth/2, screenHeight/2)
 		s.angle = 0
 	})
-	
+
 }
 
 
-Turtle.prototype.clear = function() { 
+Turtle.prototype.clear = function() {
 	theScheduler.schedule(function() {
 		clean()
 	})
@@ -158,6 +158,9 @@ circle = function(x, y, s) {
 원 = circle
 지우기 = clean
 
+sine = Math.sin
+cosine = Math.cos
+random = myp5.random
 
 translateLeftCode = function(code) { return smiley.eval(code) }
 translateRightCode = function(code) { return eval(code)}
