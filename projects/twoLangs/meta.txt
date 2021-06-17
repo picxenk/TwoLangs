@@ -115,6 +115,7 @@ Turtle.prototype["반복하기"] = function(times, block) { for (var cnt = 1 ; c
 Turtle.prototype.px = function(n) { var s = this; theScheduler.schedule(function() {s.x = n}) }
 Turtle.prototype.py = function(n) { var s = this; theScheduler.schedule(function() {s.y = n}) }
 Turtle.prototype.toward = function(n) { var s = this; theScheduler.schedule(function() {s.angle = n * Math.PI / 180}) }
+Turtle.prototype.random = function(n) { return myp5.int(myp5.random(n)) }
 Turtle.prototype.print = function(n) { print(n) }
 
 Turtle.prototype.eval = function(code) { eval(LogoTranslator.matchAll(code, "topLevelCmds")).apply(this) }
