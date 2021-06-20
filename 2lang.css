@@ -21,7 +21,7 @@ textarea {
 textarea.codespace {
     /* font-family: 'Roboto Mono'; */
     font-family: DungGeunMo;
-    font-size: 0.9em;
+    font-size: 1.0em;
     line-height: 110%;
 
 	outline: none;
