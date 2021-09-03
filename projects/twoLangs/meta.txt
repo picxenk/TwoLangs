@@ -2,6 +2,8 @@ eval(readFile('setup_env'))
 
 
 ometa LogoTranslator <: Parser {
+  fromTo :x :y = seq(x) (~seq(y) char)* seq(y),
+  space        = ^space | fromTo(';', '\n'),
   name         = spaces firstAndRest(`letter, `letterOrDigit):xs -> xs.join(''),
   cmdName      = name:n
                    ?(n != 'to') ?(n != 'end') ?(n != 'output')   -> n,
